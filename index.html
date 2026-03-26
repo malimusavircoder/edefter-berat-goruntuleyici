@@ -32,23 +32,27 @@ h1{font-size:22px;font-weight:700;margin-bottom:8px;color:#1f2a37;letter-spacing
 .rst:hover{background:#eaf0f8;border-color:#bfcddd;color:#273243}
 .rst:before{content:"<";font-size:12px;line-height:1}
 .tip{font-size:11px;color:#aaa;margin-top:10px}
-.outer{border:5px solid #969696;padding:5px;font-family:"Arial Narrow",Arial,sans-serif;font-size:9.5pt}
-.inner{border:10px solid #1e1e1e;padding:16px}
-.bh1{font-size:16px;text-align:center;margin:6px 0 16px;font-weight:bold}
-.baslik{text-align:center;margin:10px 0 4px;position:relative}
-.baslik hr{border:none;border-top:1px solid #bbb;margin:0}
-.btext{display:inline-block;background:#fff;font-size:10.5pt;font-weight:bold;margin-top:-12px;padding:0 10px;position:relative}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.outer{border:5px solid #969696;padding:5px;font-family:"Arial Narrow",Arial,sans-serif;font-size:10pt;max-width:980px;margin:0 auto;background:#fff}
+.inner{border:10px solid #1e1e1e;padding:18px 18px 14px}
+.bh1{font-size:16px;text-align:center;margin:4px 0 10px;font-weight:bold;letter-spacing:.02em}
+.baslik{text-align:center;margin:12px 0 10px;position:relative}
+.baslik hr{border:none;border-top:2px solid #6e6e6e;margin:0}
+.btext{display:inline-block;background:#fff;font-size:10.5pt;font-weight:bold;margin-top:-13px;padding:0 14px;position:relative}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-bottom:18px}
 .bt{border-collapse:collapse;width:100%}
-.bt th{font-weight:bold;text-align:right;white-space:nowrap;padding:2px 6px 2px 0;font-size:9pt;vertical-align:top}
-.bt td{padding:2px 4px;font-size:9pt;vertical-align:top}
+.bt th{font-weight:bold;text-align:right;white-space:nowrap;padding:3px 8px 3px 0;font-size:9pt;vertical-align:top}
+.bt td{padding:3px 4px;font-size:9pt;vertical-align:top}
 .sep{text-align:center;padding:0 3px;width:10px}
-.det{border-collapse:collapse;width:100%;margin-bottom:20px;font-size:9pt}
+.doc-grid{width:100%;border-collapse:collapse;margin-bottom:18px}
+.doc-grid td{width:50%;vertical-align:top;padding:0 10px}
+.doc-grid td:first-child{padding-left:0}
+.doc-grid td:last-child{padding-right:0}
+.det{border-collapse:collapse;width:76%;margin:0 auto 18px;font-size:9pt}
 .det th,.det td{border:1px solid #000;padding:4px 6px;text-align:center}
-.det th{background:#f0f0f0;font-weight:bold}
+.det th{background:#efefef;font-weight:bold}
 .det td.L{text-align:left}
 .det td.R{text-align:right}
-.box{border:1px solid #aca899;padding:5px;word-break:break-all;font-size:7.5pt;font-family:monospace;line-height:1.4;margin-bottom:8px}
+.box{border:1px solid #aca899;padding:6px 7px;word-break:break-all;font-size:7.3pt;font-family:monospace;line-height:1.35;margin-bottom:12px;min-height:20px}
 .sec{background:#fafafa;border:1px solid #eee;border-radius:10px;padding:14px 18px;margin-bottom:10px}
 .sec-t{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.05em;padding-bottom:8px;border-bottom:1px solid #eee;margin-bottom:10px}
 .igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -63,7 +67,7 @@ h1{font-size:22px;font-weight:700;margin-bottom:8px;color:#1f2a37;letter-spacing
 .dot-ok{background:#22c55e}
 .dot-warn{background:#f59e0b}
 .fc{grid-column:1/-1}
-.berat-logo{max-width:165px;height:auto;margin:0 auto 20px;display:block}
+.berat-logo{max-width:118px;height:auto;margin:0 auto 10px;display:block}
 @media (max-width:700px){body{padding:14px}.tb{flex-direction:column;align-items:stretch}.tabs{flex-wrap:wrap}.tab{flex:1 1 auto;text-align:center}.result{padding:14px}}
 @page{size:auto;margin:10mm}
 @media print{
@@ -270,7 +274,7 @@ function buildResmiHtml(data) {
   h += "<tr><th>FAX</th><td class=\"sep\">:</td><td>" + esc(data.entFax) + "</td></tr>";
   h += "<tr><th>E-POSTA</th><td class=\"sep\">:</td><td>" + esc(data.entEmail) + "</td></tr>";
   h += "</tbody></table></div>";
-  h += "<div><div class=\"baslik\"><hr><span class=\"btext\">MUHASEBECI BILGILERI</span></div>";
+  h += "<div><div class=\"baslik\"><hr><span class=\"btext\">MESLEK MENSUBU BILGILERI</span></div>";
   h += "<table class=\"bt\"><tbody>";
   h += "<tr><th>UNVAN</th><td class=\"sep\">:</td><td>" + esc(data.accName) + "</td></tr>";
   h += "<tr><th>TELEFON</th><td class=\"sep\">:</td><td>" + esc(data.accPhone) + "</td></tr>";
@@ -279,16 +283,24 @@ function buildResmiHtml(data) {
   h += "<tr><th>SOZLESME NO</th><td class=\"sep\">:</td><td>" + esc(data.accSoz) + "</td></tr>";
   h += "</tbody></table></div></div>";
   h += "<div class=\"baslik\"><hr><span class=\"btext\">DOKUMAN BILGILERI</span></div>";
-  h += "<table class=\"bt\" style=\"margin-bottom:20px\"><tbody>";
-  h += "<tr><th>DOKUMAN TIPI</th><td class=\"sep\">:</td><td>" + esc(data.entTypeStr) + "</td><th>OLUSTURAN</th><td class=\"sep\">:</td><td>" + esc(data.creator) + "</td></tr>";
-  h += "<tr><th>DONEMI</th><td class=\"sep\">:</td><td>" + fmtDate(data.pb) + " - " + fmtDate(data.pe) + "</td><th>TEKIL NO</th><td class=\"sep\">:</td><td>" + esc(data.tekil) + "</td></tr>";
-  h += "<tr><th>OLUSTURMA TARIHI</th><td class=\"sep\">:</td><td>" + fmtDate(data.creation) + "</td><th>KAYNAK UYGULAMA</th><td class=\"sep\">:</td><td style=\"font-size:8pt\">" + esc(data.srcApp) + "</td></tr>";
-  h += "<tr><th>HESAP DONEMI</th><td class=\"sep\">:</td><td>" + fmtDate(data.fyStart) + " - " + fmtDate(data.fyEnd) + "</td><th>ETTN</th><td class=\"sep\">:</td><td style=\"font-size:8pt\">" + esc(data.ettn) + "</td></tr>";
-  if (data.yev) h += "<tr><th>YEVMIYE MAD. SAYISI</th><td class=\"sep\">:</td><td colspan=\"4\">" + esc(data.yev) + "</td></tr>";
-  if (data.comment) h += "<tr><th>ACIKLAMA</th><td class=\"sep\">:</td><td colspan=\"4\">" + esc(data.comment) + "</td></tr>";
-  h += "</tbody></table>";
+  h += "<table class=\"doc-grid\"><tbody><tr><td>";
+  h += "<table class=\"bt\"><tbody>";
+  h += "<tr><th>DOKUMAN TIPI</th><td class=\"sep\">:</td><td>" + esc(data.entTypeStr) + "</td></tr>";
+  h += "<tr><th>DONEMI</th><td class=\"sep\">:</td><td>" + fmtDate(data.pb) + " - " + fmtDate(data.pe) + "</td></tr>";
+  h += "<tr><th>OLUSTURMA TARIHI</th><td class=\"sep\">:</td><td>" + fmtDate(data.creation) + "</td></tr>";
+  h += "<tr><th>HESAP DONEMI</th><td class=\"sep\">:</td><td>" + fmtDate(data.fyStart) + " - " + fmtDate(data.fyEnd) + "</td></tr>";
+  if (data.comment) h += "<tr><th>ACIKLAMA</th><td class=\"sep\">:</td><td>" + esc(data.comment) + "</td></tr>";
+  h += "</tbody></table></td><td>";
+  h += "<table class=\"bt\"><tbody>";
+  h += "<tr><th>OLUSTURAN</th><td class=\"sep\">:</td><td>" + esc(data.creator) + "</td></tr>";
+  h += "<tr><th>TEKIL NO</th><td class=\"sep\">:</td><td>" + esc(data.tekil) + "</td></tr>";
+  h += "<tr><th>KAYNAK UYGULAMA</th><td class=\"sep\">:</td><td style=\"font-size:8pt\">" + esc(data.srcApp) + "</td></tr>";
+  h += "<tr><th>ETTN</th><td class=\"sep\">:</td><td style=\"font-size:8pt\">" + esc(data.ettn) + "</td></tr>";
+  if (data.ledgerSize) h += "<tr><th>ILGILI DEFTER BOYUTU</th><td class=\"sep\">:</td><td>" + esc(data.ledgerSize) + " MB</td></tr>";
+  else if (data.yev) h += "<tr><th>YEVMIYE MAD. SAYISI</th><td class=\"sep\">:</td><td>" + esc(data.yev) + "</td></tr>";
+  h += "</tbody></table></td></tr></tbody></table>";
   if (data.detayRows) {
-    h += "<div class=\"baslik\"><hr><span class=\"btext\">HESAP DETAYI</span></div>";
+    h += "<div class=\"baslik\"><hr><span class=\"btext\">VERGI DETAYI</span></div>";
     h += "<table class=\"det\"><thead><tr><th rowspan=\"2\">HESAP KODU</th><th rowspan=\"2\">HESAP ADI</th><th colspan=\"2\">DONEM ICI DEGISIKLIKLER</th></tr><tr><th>BORC TUTAR</th><th>ALACAK TUTAR</th></tr></thead><tbody>" + data.detayRows + "</tbody></table>";
   }
   h += "<div class=\"baslik\"><hr><span class=\"btext\">BERAT'A KONU OLAN DOKUMANIN OZET DEGERI</span></div>";
@@ -354,6 +366,7 @@ function process(xmlStr, fname) {
     var ettn = gn(doc, "uniqueID")[1] || tekil;
     var yev = gn(doc, "numberOfEntries")[0] || "";
     var comment = gn(doc, "entriesComment")[0] || "";
+    var ledgerSize = gn(doc, "measurableQuantity")[0] || "";
 
     var dEntries = {};
     var allEls = doc.querySelectorAll("*");
@@ -406,6 +419,7 @@ function process(xmlStr, fname) {
       fyEnd: fyEnd,
       ettn: ettn,
       yev: yev,
+      ledgerSize: ledgerSize,
       comment: comment,
       detayRows: detayRows,
       digestGoster: digestGoster,
